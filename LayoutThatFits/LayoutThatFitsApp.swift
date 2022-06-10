@@ -16,10 +16,15 @@ struct LayoutThatFitsApp: App {
     }
 }
 
+/// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
 struct LayoutThatFits: Layout {
     let axes: Axis.Set
     let layoutPreferences: [any Layout]
     
+    /// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
+    /// - Parameters:
+    ///   - axes: Axes this content must fit in.
+    ///   - layoutPreferences: Layout preferences from largest to smallest.
     init(in axes: Axis.Set = [.horizontal, .vertical], _ layoutPreferences: [any Layout]) {
         self.axes = axes
         self.layoutPreferences = layoutPreferences
@@ -107,8 +112,42 @@ struct FittingContent: View {
 extension View {
     func boxStyle() -> some View {
         self
+            .padding(1)
             .background(Rectangle().inset(by: -2).strokeBorder(Color.brown, lineWidth: 2))
             .background(Color.brown.shadow(.inner(radius: 5)))
+    }
+}
+
+struct LayoutThatFitsExample: View {
+    let width: CGFloat
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            LayoutThatFits([HStack(), VStack()]) {
+                FittingContent(thing: "Layout")
+            }
+            .frame(width: width)
+            .boxStyle()
+            
+            Spacer()
+            
+            Text("LayoutThatFits").font(.title)
+            Text("- One set of subviews")
+            Text("- Animation works!")
+            Text(
+"""
+LayoutThatFits(
+    [HStack(), VStack()]
+) {
+    content
+}
+"""
+            )
+            .font(.body.monospaced())
+            .padding()
+        }
     }
 }
 
@@ -134,16 +173,15 @@ struct ViewThatFitsExample: View {
             Text("ViewThatFits").font(.title)
             Text("- Duplicate sets of subviews")
             Text("- Animation not possible")
-            
             Text(
 """
 ViewThatFits {
-HStack {
-    content
-}
-VStack {
-    content
-}
+    HStack {
+        content
+    }
+    VStack {
+        content
+    }
 }
 """
             )
@@ -152,40 +190,6 @@ VStack {
         }
     }
     
-}
-
-struct LayoutThatFitsExample: View {
-    let width: CGFloat
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            LayoutThatFits([HStack(), VStack()]) {
-                FittingContent(thing: "Layout")
-            }
-            .frame(width: width)
-            .boxStyle()
-            
-            Spacer()
-            
-            Text("LayoutThatFits").font(.title)
-            Text("- One set of subviews")
-            Text("- Animation works!")
-            
-            Text(
-"""
-LayoutThatFits(
-    [HStack(), VStack()]
-) {
-    content
-}
-"""
-            )
-            .font(.body.monospaced())
-            .padding()
-        }
-    }
 }
 
 struct LayoutThatFits_Previews: PreviewProvider {
