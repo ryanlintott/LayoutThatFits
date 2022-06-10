@@ -8,18 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		CF5A470C2852C38C0057534A /* LayoutThatFitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5A470B2852C38C0057534A /* LayoutThatFitsApp.swift */; };
-		CF5A470E2852C38C0057534A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5A470D2852C38C0057534A /* ContentView.swift */; };
-		CF5A47102852C38D0057534A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5A470F2852C38D0057534A /* Assets.xcassets */; };
-		CF5A47142852C38D0057534A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5A47132852C38D0057534A /* Preview Assets.xcassets */; };
+		CF5A471F2852CDB30057534A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5A471D2852CDB30057534A /* Preview Assets.xcassets */; };
+		CF5A47202852CDB30057534A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5A471E2852CDB30057534A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF5A47082852C38C0057534A /* LayoutThatFits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutThatFits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF5A470B2852C38C0057534A /* LayoutThatFitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutThatFitsApp.swift; sourceTree = "<group>"; };
-		CF5A470D2852C38C0057534A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		CF5A470F2852C38D0057534A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF5A47112852C38D0057534A /* LayoutThatFits.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LayoutThatFits.entitlements; sourceTree = "<group>"; };
-		CF5A47132852C38D0057534A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CF5A471D2852CDB30057534A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CF5A471E2852CDB30057534A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,18 +51,17 @@
 			isa = PBXGroup;
 			children = (
 				CF5A470B2852C38C0057534A /* LayoutThatFitsApp.swift */,
-				CF5A470D2852C38C0057534A /* ContentView.swift */,
-				CF5A470F2852C38D0057534A /* Assets.xcassets */,
 				CF5A47112852C38D0057534A /* LayoutThatFits.entitlements */,
-				CF5A47122852C38D0057534A /* Preview Content */,
+				CF5A471E2852CDB30057534A /* Assets.xcassets */,
+				CF5A471C2852CDB20057534A /* Preview Content */,
 			);
 			path = LayoutThatFits;
 			sourceTree = "<group>";
 		};
-		CF5A47122852C38D0057534A /* Preview Content */ = {
+		CF5A471C2852CDB20057534A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				CF5A47132852C38D0057534A /* Preview Assets.xcassets */,
+				CF5A471D2852CDB30057534A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -127,8 +124,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF5A47142852C38D0057534A /* Preview Assets.xcassets in Resources */,
-				CF5A47102852C38D0057534A /* Assets.xcassets in Resources */,
+				CF5A47202852CDB30057534A /* Assets.xcassets in Resources */,
+				CF5A471F2852CDB30057534A /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +136,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF5A470E2852C38C0057534A /* ContentView.swift in Sources */,
 				CF5A470C2852C38C0057534A /* LayoutThatFitsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
