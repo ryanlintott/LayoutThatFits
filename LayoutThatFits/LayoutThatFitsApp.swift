@@ -25,26 +25,13 @@ struct LayoutThatFits: Layout {
     /// - Parameters:
     ///   - axes: Axes this content must fit in.
     ///   - layoutPreferences: Layout preferences from largest to smallest.
-    init(in axes: Axis.Set = [.horizontal, .vertical], _ layoutPreferences: [AnyLayout]) {
-        self.axes = axes
-        self.layoutPreferences = layoutPreferences
-    }
-    
-    /// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
-    /// - Parameters:
-    ///   - axes: Axes this content must fit in.
-    ///   - layoutPreferences: Layout preferences from largest to smallest.
     init(in axes: Axis.Set = [.horizontal, .vertical], _ layoutPreferences: [any Layout]) {
         self.axes = axes
         self.layoutPreferences = layoutPreferences.map { AnyLayout($0) }
     }
     
-    var layouts: [AnyLayout] {
-        layoutPreferences.map { AnyLayout($0) }
-    }
-    
     func layoutThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> AnyLayout? {
-        layouts.first(where: { layout in
+        layoutPreferences.first(where: { layout in
             var cache = layout.makeCache(subviews: subviews)
             let size = layout.sizeThatFits(proposal: proposal, subviews: subviews, cache: &cache)
             
@@ -56,13 +43,13 @@ struct LayoutThatFits: Layout {
     }
     
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let layout = layoutThatFits(proposal: proposal, subviews: subviews, cache: &cache) ?? layouts.last!
+        guard let layout = layoutThatFits(proposal: proposal, subviews: subviews, cache: &cache) ?? layoutPreferences.last else { return CGSize(width: 10, height: 10) }
         var cache = layout.makeCache(subviews: subviews)
         return layout.sizeThatFits(proposal: proposal, subviews: subviews, cache: &cache)
     }
     
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let layout = layoutThatFits(proposal: proposal, subviews: subviews, cache: &cache) ?? layouts.last!
+        guard let layout = layoutThatFits(proposal: proposal, subviews: subviews, cache: &cache) ?? layoutPreferences.last else { return }
         var cache = layout.makeCache(subviews: subviews)
         layout.placeSubviews(in: bounds, proposal: proposal, subviews: subviews, cache: &cache)
     }
