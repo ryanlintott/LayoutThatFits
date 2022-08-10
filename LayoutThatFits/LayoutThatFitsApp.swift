@@ -19,7 +19,16 @@ struct LayoutThatFitsApp: App {
 /// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
 struct LayoutThatFits: Layout {
     let axes: Axis.Set
-    let layoutPreferences: [any Layout]
+    let layoutPreferences: [AnyLayout]
+    
+    /// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
+    /// - Parameters:
+    ///   - axes: Axes this content must fit in.
+    ///   - layoutPreferences: Layout preferences from largest to smallest.
+    init(in axes: Axis.Set = [.horizontal, .vertical], _ layoutPreferences: [AnyLayout]) {
+        self.axes = axes
+        self.layoutPreferences = layoutPreferences
+    }
     
     /// Creates a layout using the first layout that fits in the axes provided from the array of layout preferences.
     /// - Parameters:
@@ -27,7 +36,7 @@ struct LayoutThatFits: Layout {
     ///   - layoutPreferences: Layout preferences from largest to smallest.
     init(in axes: Axis.Set = [.horizontal, .vertical], _ layoutPreferences: [any Layout]) {
         self.axes = axes
-        self.layoutPreferences = layoutPreferences
+        self.layoutPreferences = layoutPreferences.map { AnyLayout($0) }
     }
     
     var layouts: [AnyLayout] {
@@ -81,7 +90,7 @@ struct ContentView: View {
                 .cornerRadius(20)
                 .padding()
             }
-            .animation(.default, value: width)
+            .animation(.spring(), value: width)
             
             LabeledContent("Width") {
                 Slider(value: $width, in: 50...400)
@@ -125,7 +134,7 @@ struct LayoutThatFitsExample: View {
         VStack {
             Spacer()
             
-            LayoutThatFits([HStack(), VStack()]) {
+            LayoutThatFits([HStackLayout(), VStackLayout()]) {
                 FittingContent(thing: "Layout")
             }
             .frame(width: width)
@@ -138,9 +147,10 @@ struct LayoutThatFitsExample: View {
             Text("- Animation works!")
             Text(
 """
-LayoutThatFits(
-    [HStack(), VStack()]
-) {
+LayoutThatFits([
+    HStackLayout(),
+    VStackLayout()
+]) {
     content
 }
 """
